@@ -26,6 +26,6 @@ ou WebForms, utilizando como D.B o SqlServer Express com um localDb (enviar um s
 criação das devidas tabelas para nossa avaliação), deverá possuir validações de formulário caso algum item
 esteja vazio ou incorreto.
 <p></p>Diferencial:
-- Outras tecnologias como Jquery e JavaScript ficam também a critério.
-- Utilização do Angular.
+<p></p><p></p>- Outras tecnologias como Jquery e JavaScript ficam também a critério.
+<p></p>- Utilização do Angular.
 
