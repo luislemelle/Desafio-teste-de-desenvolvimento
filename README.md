@@ -28,7 +28,4 @@ esteja vazio ou incorreto.
 <p></p>Diferencial:
 - Outras tecnologias como Jquery e JavaScript ficam também a critério.
 - Utilização do Angular.
-<p></p>Tempo para Desenvolvimento e entrega:
-Entrega em 29/08/2018 até as 10h, assim que concluído enviar para o e-mail da Julyanne Oliveira o projeto
-compactado e se possuir também o documento explicando sobre o projeto, tecnologias utilizadas e observações
-necessárias, podendo também passar o link do GitHub (aconselhável) com os itens solicitados.
+
