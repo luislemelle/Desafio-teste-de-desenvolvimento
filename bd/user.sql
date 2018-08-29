@@ -1,6 +1,6 @@
--- Generation time: Mon, 27 Aug 2018 22:25:22 +0000
+-- Generation time: Wed, 29 Aug 2018 19:14:53 +0000
 -- Host: mysql.hostinger.ro
--- DB name: u574849695_25
+-- DB name: u574849695_23
 /*!40030 SET NAMES UTF8 */;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,27 +14,29 @@
 
 DROP TABLE IF EXISTS `User`;
 CREATE TABLE `User` (
-  `PK_user` int(15) unsigned NOT NULL,
-  `login`` varchar(255) NOT NULL,
+  `PK_user` int(150) NOT NULL AUTO_INCREMENT,
+  `login` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `Tipo_User` varchar(255) NOT NULL,
-  `Create_Date` datetime NOT NULL,
   PRIMARY KEY (`PK_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
-INSERT INTO `User` VALUES ('0','fidel.weissnat','myrtle.rosenbaum@mayert.com','zjenkins','Grayson','2005-09-28 22:01:54'),
-('1','abayer','mervin56@johnston.com','sgoldner','Joan','2000-11-22 07:43:03'),
-('2','eharber','rath.marley@sawaynheaney.com','ocrooks','Jeremy','2000-07-13 21:10:27'),
-('3','grady.general','shields.abel@hotmail.com','mertz.camren','Chelsie','1978-07-14 04:46:52'),
-('4','jensen47','jratke@collierbeatty.com','sharon.ritchie','Ewald','2010-08-20 02:30:49'),
-('5','moriah.swift','greenfelder.gunner@hotmail.com','derek98','Pearline','1996-01-19 00:46:04'),
-('6','hyman.kutch','willard.fadel@green.info','asawayn','Berenice','2012-03-01 05:45:58'),
-('7','jan05','tbayer@gmail.com','samson.armstrong','Narciso','2011-08-10 16:03:47'),
-('8','tad30','joanie.weissnat@stehr.biz','boyd.langosh','Katrine','1981-05-29 22:16:29'),
-('9','lkutch','aurelia.smitham@gmail.com','cletus85','Laverna','1993-11-25 03:38:20'); 
+INSERT INTO `User` VALUES ('1','Rosalyn','nelson.simonis@prohaska.net','jgleichner','Arnaldo'),
+('2','Ansley','zsmith@gmail.com','terry.theodora','Garnet'),
+('3','Asha','janie.sipes@spinka.com','wjones','Cara'),
+('4','Aniya','mya.johns@hotmail.com','malvina98','Ernie'),
+('5','Ludie','macejkovic.dejon@marquardt.com','devyn54','Emory'),
+('6','Elvis','sally.nitzsche@gmail.com','morar.kathleen','Martine'),
+('7','Vivien','krystel41@stiedemann.com','ylehner','Armando'),
+('8','Myrtle','shyanne.frami@weimann.biz','blangworth','Elinor'),
+('9','Heath','murray.colleen@gmail.com','freeda.weber','Brandyn'),
+('10','Anderson','phyatt@cartwright.biz','ysporer','Abdullah'); 
 
-UPDATE `user` SET `login` = 'admin', `password` = 'admin' WHERE `user`.`PK_user` = 0;
+UPDATE `user` SET `login` = 'admin', `password` = 'admin' WHERE `user`.`PK_user` = 1;
+UPDATE `user` SET `Tipo_User` = 'normal_user';
+UPDATE `user` SET `Tipo_User` = 'admin' WHERE `user`.`PK_user` = 1;
+
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
