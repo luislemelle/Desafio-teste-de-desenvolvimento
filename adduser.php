@@ -1,7 +1,7 @@
 <!DOCTYPE html>
+<html>
 <?php
 session_start();
-
 if(!isset($_SESSION['logged_in']))
 {
  header("Location: index.php");
@@ -16,7 +16,6 @@ $result = mysqli_query($connection,$query)or die(mysqli_error());
 $row     = mysqli_fetch_array($result);
 
 ?>
-<html>
 <head>
 	<title> Pagina Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -121,12 +120,7 @@ echo "</table>";
                 <br>
                 <input type="text" name="password" class="form-control" placeholder="Password">
                 <br>
-                
-                
-                <label class="checkbox pull-right">
-                 <input type="checkbox" Tipo_User="normal_user">User admin?       
-                </label> 
-                <?php if (isset($Tipo_User) && $Tipo_User=="admin");?> 
+                <input type="text" name="Tipo_User" class="form-control" placeholder="tipo_user">    
                 <br><br>
                 <button type="submit" class="btn btn-primary" id="btn-ins" name="btn-ins">Salvar</button>             
                 </form>
@@ -153,19 +147,25 @@ echo "</table>";
               },
        Email: {
        required: true,               
-              },     
+              },
+       Tipo_User: {
+       required: true,               
+              },      
         },
            messages:
         {
+                Email:  {
+                    required:"Por favor digite um E-mail."
+                        },
                 password:{ 
                     required: "Por favor digite sua senha."
                          },
                 login:   {
                     required:"Por favor digite um login"
-                         },
-                Email:  
-                    required:"Por favor digite um E-mail."
-                
+                         }, 
+                Tipo_User:   {
+                    required:"Por favor digite o tipo user"
+                         },       
         },
         submitHandler: insForm
            });  
@@ -173,38 +173,32 @@ echo "</table>";
        function insForm()
        {  
        var data = $("#insForm").serialize();
+       alert("Data Save:1 " + data);
         
        $.ajax({
         
         type : 'POST',
         url  : 'insert.php',
         data : data,
-        beforeSend: function()
-        { 
-         $("#error").fadeOut();
-         $("#btn-ins").html('salvando...');
-        },
         success :  function(response)
-           {      
-          if(response == "useradd"){
-              
-           $("#btn-login").html('&nbsp; salvando ...');
-           setTimeout(' window.location.href = "index.php"; ',4000);
-          }
-          else{
-              
-           $("#error").fadeIn(1000, function(){   
- 
-           $("#error").html('<div class="alert alert-danger"> <"Erro no cadastro";.</div>');
-                $("#btn-ins").html('Salvar');
- 
+           {                  
+            if(response == "ok"){
+             
+             $("#btn-btn-ins").html('&nbsp; Signing In ...');
+             setTimeout(' window.location.href = "adduser.php"; ',4000);
+            }
+            else{
+             
+             $("#error").fadeIn(1000, function(){   
+             $("#error").html('<div class="alert alert-danger"> "Erro e-mail ou password invalidos!";.</div>');
             });
-           }
           }
-        });
-       
+         }
+       });
+        return false;
       }
     });
+    
 </script>
 <!--Modal Alt -->
 <div class="modal fade" id="ModalAlt" tabindex="-1" role="dialog" aria-labelledby="ModalAlt" aria-hidden="true">

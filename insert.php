@@ -11,9 +11,11 @@ require_once('conecta.php');
     $password = $_POST['password'];
     $Tipo_User = $_POST['Tipo_User'];
   
-    $query  = "INSERT INTO user WHERE login='$login' AND Email='$Email' AND password='$password' AND Tipo_User='$Tipo_User'";
-    $result = mysqli_query($connection,$query)or die(mysqli_error());  
-
-    echo "usuario adicionado!!";   
+    $query = "INSERT INTO user ( login, Email, password, Tipo_User) VALUES ('$login', '$Email', '$password', '$Tipo_User')";
+    $result = mysqli_query($connection,$query)or die(mysqli_error());
+    $result=mysql_query($sql);
+if($result){
+echo "ok";
+}
  }
 ?>

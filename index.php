@@ -44,9 +44,9 @@
            messages:
         {
                 password:{
-                          required: "please enter your password"
+                          required: "Por favor insira um Password"
                          },
-                login: "please enter your login",
+                login: "Por favor insira um login",
         },
         submitHandler: submitForm 
            });  
