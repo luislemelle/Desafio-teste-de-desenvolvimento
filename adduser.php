@@ -122,16 +122,18 @@ echo "</table>";
                 <br>
                 <input type="text" name="Tipo_User" class="form-control" placeholder="tipo_user">    
                 <br><br>
-                <button type="submit" class="btn btn-primary" id="btn-ins" name="btn-ins">Salvar</button>             
+                <button type="submit" class="btn btn-primary" id="btn-ins" name="btn-ins">Salvar</button>           
                 </form>
                 <br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+      <div id="error" style="margin-top: 10px"></div>
     </div>
   </div>
 </div>
+
 <script>
     $('document').ready(function()
     { 
@@ -173,7 +175,7 @@ echo "</table>";
        function insForm()
        {  
        var data = $("#insForm").serialize();
-       alert("Data Save:1 " + data);
+       //alert("Data Save:1 " + data);
         
        $.ajax({
         
@@ -183,14 +185,13 @@ echo "</table>";
         success :  function(response)
            {                  
             if(response == "ok"){
-             
-             $("#btn-btn-ins").html('&nbsp; Signing In ...');
-             setTimeout(' window.location.href = "adduser.php"; ',4000);
+              $("#error").fadeOut();
+              setTimeout(' window.location.href = "adduser.php"; ',1000); 
             }
             else{
              
              $("#error").fadeIn(1000, function(){   
-             $("#error").html('<div class="alert alert-danger"> "Erro e-mail ou password invalidos!";.</div>');
+             $("#error").html('<div class="alert alert-danger"> "Erro no insert!"</div>');
             });
           }
          }
@@ -205,18 +206,32 @@ echo "</table>";
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalAlt">Alterar usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+<h1 class="modal-title" id="ModalAlt">Alterar usuário</h1>
+</div>
+        </div>
       </div>
       <div class="modal-body">
-        ...
+
+      
+      <form class="insForm" method="POST" id="altForm">
+                <input type="text" class="form-control" name="login" placeholder="Usuario" autofocus>
+                <br>
+                <input type="text" name="Email" class="form-control" placeholder="Email">
+                <br>
+                <input type="text" name="password" class="form-control" placeholder="Password">
+                <br>
+                <input type="text" name="Tipo_User" class="form-control" placeholder="tipo_user">    
+                <br><br>
+                <button type="submit" class="btn btn-primary" id="btn-alt" name="btn-alt">Salvar</button>           
+                </form>
+                <br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+      <div id="error" style="margin-top: 10px"></div>
     </div>
   </div>
 </div>
@@ -225,20 +240,78 @@ echo "</table>";
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalExc">Excluir usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+<h1 class="modal-title" id="ModalExc">Excluir usuário</h1>
+</div>
+        </div>
       </div>
       <div class="modal-body">
-        ...
+
+      
+      <form class="excForm" method="POST" id="excForm">
+                <input type="text" class="form-control" name="login" placeholder="login" autofocus> 
+                <br><br>
+                <button type="submit" class="btn btn-danger" id="btn-exc" name="btn-exc">Excluir</button>           
+                </form>
+                <br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+      <div id="error" style="margin-top: 10px"></div>
     </div>
   </div>
 </div>
+<script>
+    $('document').ready(function()
+    { 
+         /* validation */
+      $("#excForm").validate({
+          rules:
+       {
+       login: {
+       required: true,               
+              },
+      
+        },
+           messages:
+        {           
+                login:   {
+                    required:"Por favor digite um login"
+                         },                 
+        },
+        submitHandler: insForm
+           });  
+
+       function insForm()
+       {  
+       var data = $("#excForm").serialize();
+       //alert("Data Save:1 " + data);
+        
+       $.ajax({
+        
+        type : 'POST',
+        url  : 'delete.php',
+        data : data,
+        success :  function(response)
+           {                  
+            if(response == "ok"){
+              $("#error").fadeOut();
+              setTimeout(' window.location.href = "adduser.php"; ',1000); 
+            }
+            else{
+             
+             $("#error").fadeIn(1000, function(){   
+             $("#error").html('<div class="alert alert-danger"> "Erro no delete!"</div>');
+            });
+          }
+         }
+       });
+        return false;
+      }
+    });
+    
+</script>
 </body>
 </html>

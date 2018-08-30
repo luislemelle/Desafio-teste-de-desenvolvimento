@@ -13,9 +13,13 @@ require_once('conecta.php');
   
     $query = "INSERT INTO user ( login, Email, password, Tipo_User) VALUES ('$login', '$Email', '$password', '$Tipo_User')";
     $result = mysqli_query($connection,$query)or die(mysqli_error());
-    $result=mysql_query($sql);
 if($result){
 echo "ok";
 }
+else {
+
+    echo "Erro erro no insert!";
+  
+    } 
  }
 ?>
