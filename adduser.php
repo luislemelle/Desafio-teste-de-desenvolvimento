@@ -111,29 +111,31 @@ echo "</table>";
         </div>
       </div>
       <div class="modal-body">
-
-      
-      <form class="insForm" method="POST" id="insForm">
-                <input type="text" class="form-control" name="login" placeholder="Usuario" autofocus>
-                <br>
-                <input type="text" name="Email" class="form-control" placeholder="Email">
-                <br>
-                <input type="text" name="password" class="form-control" placeholder="Password">
-                <br>
-                <input type="text" name="Tipo_User" class="form-control" placeholder="tipo_user">    
-                <br><br>
-                <button type="submit" class="btn btn-primary" id="btn-ins" name="btn-ins">Salvar</button>           
-                </form>
-                <br>
+                      <form class="insForm" method="POST" id="insForm">
+                            <input type="text" class="form-control" name="login" placeholder="Usuario" autofocus>
+                            <br>
+                            <input type="email" name="Email" class="form-control" placeholder="Email">
+                            <br>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <br>
+                            <h2 class="modal-title">&emsp;&emsp;&emsp;Admin?</h2>
+                            <div class="col-md-6" >
+                            
+                            <input type="checkbox" name="Tipo_User" class="form-control" value="on"><br>       
+                            </div>
+                            <div class="col-md-6"> 
+                            <button type="submit" class="btn btn-primary" id="btn-ins" name="btn-ins">Salvar</button> 
+                            </div>
+                            <br><br>         
+                      </form>                        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
-      <div id="error" style="margin-top: 10px"></div>
+      <div id="errorins" style="margin-top: 10px"></div>
     </div>
   </div>
 </div>
-
 <script>
     $('document').ready(function()
     { 
@@ -149,9 +151,6 @@ echo "</table>";
               },
        Email: {
        required: true,               
-              },
-       Tipo_User: {
-       required: true,               
               },      
         },
            messages:
@@ -164,10 +163,7 @@ echo "</table>";
                          },
                 login:   {
                     required:"Por favor digite um login"
-                         }, 
-                Tipo_User:   {
-                    required:"Por favor digite o tipo user"
-                         },       
+                         },      
         },
         submitHandler: insForm
            });  
@@ -175,7 +171,7 @@ echo "</table>";
        function insForm()
        {  
        var data = $("#insForm").serialize();
-       //alert("Data Save:1 " + data);
+       alert("Data Save:1 " + data);
         
        $.ajax({
         
@@ -185,13 +181,15 @@ echo "</table>";
         success :  function(response)
            {                  
             if(response == "ok"){
-              $("#error").fadeOut();
-              setTimeout(' window.location.href = "adduser.php"; ',1000); 
+              $("#errorins").fadeOut();
+              setTimeout(' window.location.href = "adduser.php"; ',1000);
+              alert ("Data Save:2 " + response); 
             }
             else{
              
-             $("#error").fadeIn(1000, function(){   
-             $("#error").html('<div class="alert alert-danger"> "Erro no insert!"</div>');
+             $("#errorins").fadeIn(1000, function(){   
+             $("#errorins").html('<div class="alert alert-danger"> "Erro no insert!"</div>');
+             alert("Data Save:3 " + response); 
             });
           }
          }
@@ -214,24 +212,11 @@ echo "</table>";
       </div>
       <div class="modal-body">
 
-      
-      <form class="insForm" method="POST" id="altForm">
-                <input type="text" class="form-control" name="login" placeholder="Usuario" autofocus>
-                <br>
-                <input type="text" name="Email" class="form-control" placeholder="Email">
-                <br>
-                <input type="text" name="password" class="form-control" placeholder="Password">
-                <br>
-                <input type="text" name="Tipo_User" class="form-control" placeholder="tipo_user">    
-                <br><br>
-                <button type="submit" class="btn btn-primary" id="btn-alt" name="btn-alt">Salvar</button>           
-                </form>
-                <br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
-      <div id="error" style="margin-top: 10px"></div>
+      <div id="erroralt" style="margin-top: 10px"></div>
     </div>
   </div>
 </div>
@@ -259,7 +244,7 @@ echo "</table>";
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
-      <div id="error" style="margin-top: 10px"></div>
+      <div id="errorexc" style="margin-top: 10px"></div>
     </div>
   </div>
 </div>
@@ -297,13 +282,15 @@ echo "</table>";
         success :  function(response)
            {                  
             if(response == "ok"){
-              $("#error").fadeOut();
+              $("#errorexc").fadeOut();
               setTimeout(' window.location.href = "adduser.php"; ',1000); 
+                        
             }
             else{
              
-             $("#error").fadeIn(1000, function(){   
-             $("#error").html('<div class="alert alert-danger"> "Erro no delete!"</div>');
+             $("#errorexc").fadeIn(1000, function(){   
+             $("#errorexc").html('<div class="alert alert-danger"> "Login não encontrado!"</div>');
+             
             });
           }
          }
